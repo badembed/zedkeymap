@@ -10,7 +10,8 @@
     "context": "Workspace",
     "bindings": {
       // "shift shift": "file_finder::Toggle"
-      "cmd-]": "theme_selector::Toggle"
+      "cmd-]": "theme_selector::Toggle",
+      "space f": "file_finder::Toggle"
     }
   },
 
@@ -18,15 +19,17 @@
     "context": "Editor && vim_mode == normal && (vim_operator == none || vim_operator == n) && !VimWaiting",
     "bindings": {
       // put key-bindings here if you want them to work only in normal mode
-      "g d": "editor::GoToDefinition",
-      "g r": "editor::FindAllReferences",
-      "g b": "pane::GoBack"
+      "f d": "editor::GoToDefinition",
+      "f r": "editor::FindAllReferences",
+      "f b": "pane::GoBack",
+      "s": "workspace::Save"
     }
   },
 
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
+      "space j": "outline::Toggle",
       "space r": "editor::FindAllReferences",
       "space d": "editor::GoToDefinition",
       "space b": "pane::GoBack",
@@ -37,7 +40,9 @@
       "space p": "projects::OpenRecent",
       "space s": "pane::DeploySearch",
       "space '": "terminal_panel::ToggleFocus",
-      "space t": "workspace::ToggleLeftDock"
+      "space t": "workspace::ToggleLeftDock",
+      "space ;": "terminal_panel::ToggleFocus",
+      "space a": "assistant::ToggleFocus"
       //"w": "workspace::Save"
     }
   },
@@ -49,7 +54,20 @@
       "ctrl-up": "vim::StartOfParagraph",
       "cmd-right": "vim::EndOfLine",
       "cmd-left": "vim::StartOfLine",
-      "space c": ["editor::ToggleComments", { "advance_downwards": false }]
+      "ctrl-right": "vim::NextWordEnd",
+      "ctrl-left": "vim::PreviousWordStart",
+      "alt-right": "vim::NextWordEnd",
+      "alt-left": "vim::PreviousWordStart",
+      "space c": ["editor::ToggleComments", { "advance_downwards": false }],
+      "c c": ["editor::ToggleComments", { "advance_downwards": false }]
+    }
+  },
+
+  {
+    "context": "Editor && vim_mode != visual",
+    "bindings": {
+      "ctrl-left": "editor::MoveToPreviousWordStart",
+      "ctrl-right": "editor::MoveToNextWordEnd"
     }
   },
 
@@ -66,8 +84,6 @@
     "bindings": {
       // "j k": ["workspace::SendKeystrokes", "escape"]
       "cmd-d": "editor::DeleteLine",
-      "ctrl-left": "editor::MoveToPreviousWordStart",
-      "ctrl-right": "editor::MoveToNextWordEnd",
       "ctrl-shift-left": "editor::SelectToPreviousWordStart", // cursorWordLeftSelect
       "ctrl-shift-right": "editor::SelectToNextWordEnd", // cursorWordRightSelect
       "cmd-m": ["task::Spawn", { "task_name": "make" }],
@@ -81,7 +97,14 @@
       "cmd-;": "terminal_panel::ToggleFocus",
       "cmd-]": "theme_selector::Toggle",
       "alt-shift-up": "editor::SelectToStartOfParagraph",
-      "alt-shift-down": "editor::SelectToEndOfParagraph"
+      "alt-shift-down": "editor::SelectToEndOfParagraph",
+
+      "alt-x": "editor::Cut",
+      "alt-c": "editor::Copy",
+      "alt-v": "editor::Paste",
+      "alt-z": "editor::Undo",
+      "alt-shift-z": "editor::Redo"
+      //"f2": "workspace::Save"
     }
   },
 
@@ -90,6 +113,23 @@
     "bindings": {
       "cmd-j": "outline::Toggle",
       "cmd-l": "go_to_line::Toggle"
+    }
+  },
+
+  {
+    "context": "Pane",
+    "use_key_equivalents": true,
+    "bindings": {
+      "space 1": ["pane::ActivateItem", 0],
+      "space 2": ["pane::ActivateItem", 1],
+      "space 3": ["pane::ActivateItem", 2],
+      "space 4": ["pane::ActivateItem", 3],
+      "space 5": ["pane::ActivateItem", 4],
+      "space 6": ["pane::ActivateItem", 5],
+      "space 7": ["pane::ActivateItem", 6],
+      "space 8": ["pane::ActivateItem", 7],
+      "space 9": ["pane::ActivateItem", 8],
+      "space 0": "pane::ActivateLastItem"
     }
   }
 ]
